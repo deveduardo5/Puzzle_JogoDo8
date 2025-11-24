@@ -68,6 +68,29 @@ public class puzzle_Jogo8 {
         }
     }
 
+    // ------------------------------------ 
+    // Verifica se o jogador venceu
+    // ------------------------------------
+    public static boolean verificarVitoria(int[][] t) {
+        int cont = 1;
+
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[i].length; j++) {
+
+                // última posição deve ser 0
+                if (i == 2 && j == 2) {
+                    return t[i][j] == 0;
+                }
+
+                if (t[i][j] != cont) {
+                    return false;
+                }
+                cont++;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
 
         int[][] tabuleiro = {
@@ -95,6 +118,11 @@ public class puzzle_Jogo8 {
                 System.out.println("Movimento invalido! So e possivel mover pecas adjacentes ao espaco vazio.\n");
             }
 
+            if (verificarVitoria(tabuleiro)) {
+                System.out.println("Parabens! Voce venceu!");
+                break;
+            }
         }
+        entrada.close();
     }
 }
