@@ -21,14 +21,15 @@ public class puzzle_Jogo8 {
         }
     }
 
-// ------------------------------------
-// Move a peça, se possível
-// ------------------------------------
+    // ------------------------------------
+    // Move a peça, se possível
+    // ------------------------------------
     public static boolean moverPeca(int[][] t, int numero) {
+
         int linhaPeca = -1, colunaPeca = -1;
         int linhaVazio = -1, colunaVazio = -1;
 
-// Localiza a peça e o vazio
+        // Localiza a peça e o vazio
         for (int i = 0; i < t.length; i++) {
             for (int j = 0; j < t[i].length; j++) {
 
@@ -44,23 +45,25 @@ public class puzzle_Jogo8 {
             }
         }
 
-// Verifica adjacência (mesma linha ou mesma coluna)
-        boolean adjacente = (linhaPeca == linhaVazio && Math.abs(colunaPeca - colunaVazio) == 1) || (colunaPeca == colunaVazio && Math.abs(linhaPeca - linhaVazio) == 1);
+        // Verifica adjacência (mesma linha ou mesma coluna)
+        boolean adjacente
+                = (linhaPeca == linhaVazio && Math.abs(colunaPeca - colunaVazio) == 1)
+                || (colunaPeca == colunaVazio && Math.abs(linhaPeca - linhaVazio) == 1);
 
         if (!adjacente) {
             return false;
         }
 
-// Troca
+        // Troca
         t[linhaVazio][colunaVazio] = numero;
         t[linhaPeca][colunaPeca] = 0;
 
         return true;
     }
 
-// ------------------------------------
-// Embaralha o tabuleiro com movimentos válidos
-// ------------------------------------
+    // ------------------------------------
+    // Embaralha o tabuleiro com movimentos válidos
+    // ------------------------------------
     public static void embaralhar(int[][] t) {
         for (int i = 0; i < 50; i++) {   // quantidade de tentativas de movimentos aleatórios
             int numero = 1 + (int) (Math.random() * 8); // de 1 a 8
